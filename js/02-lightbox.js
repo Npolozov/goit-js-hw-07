@@ -26,6 +26,7 @@ function createImgCard(event) {
         animationSpeed: 250,
         captionsData:'alt',
         fadeSpeed: 250,
+        captionDelay: 250,
     });
 
 
