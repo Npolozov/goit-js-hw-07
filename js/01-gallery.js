@@ -37,7 +37,7 @@ function clickOnImg({ target }) {
 
   instance.show();
 
-  imgConteiner.addEventListener("keydown", (event) => {
+  window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       instance.close();
     }
