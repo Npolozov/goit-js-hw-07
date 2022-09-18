@@ -7,6 +7,8 @@ const imgMarkup = createImgCard(galleryItems);
 imgConteiner.insertAdjacentHTML("beforeend", imgMarkup);
 imgConteiner.addEventListener("click", clickOnImg);
 
+
+
 function createImgCard(event) {
   return event
     .map(({ preview, original, description }) => {
@@ -37,9 +39,12 @@ function clickOnImg({ target }) {
 
   instance.show();
 
-  window.addEventListener("keydown", (event) => {
+  window.addEventListener("keydown", onEscapePress);
+
+  function onEscapePress(event){
     if (event.key === "Escape") {
       instance.close();
-    }
-  });
-}
+      window.removeEventListener("keydown", onEscapePress);
+      console.log(event.code);
+  }
+} }
