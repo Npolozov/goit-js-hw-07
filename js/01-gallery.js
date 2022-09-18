@@ -6,6 +6,7 @@ const imgMarkup = createImgCard(galleryItems);
 
 imgConteiner.insertAdjacentHTML("beforeend", imgMarkup);
 imgConteiner.addEventListener("click", clickOnImg);
+imgConteiner.addEventListener("click", clickOnImg);
 
 
 
@@ -35,16 +36,36 @@ function clickOnImg({ target }) {
 
   const instance = basicLightbox.create(`
       <img src="${target.dataset.source}" width="800" height="600">
-  `);
-
-  instance.show();
-
-  window.addEventListener("keydown", onEscapePress);
-
-  function onEscapePress(event){
-    if (event.key === "Escape") {
-      instance.close();
-      window.removeEventListener("keydown", onEscapePress);
-      console.log(event.code);
+  `,{
+		onShow: (instance) => { 
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          return instance.close();
+        }
+      });
+    },
+		onClose: (instance) => { 
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          return instance.close();
+        }
+      });
+    },
   }
-} }
+  ); instance.show();
+} 
+
+  
+  
+  
+//   instance.show();
+
+//   window.addEventListener("keydown", onEscapePress);
+
+//   function onEscapePress(event){
+//     if (event.key === "Escape") {
+//       instance.close();
+//       window.removeEventListener("keydown", onEscapePress);
+//       console.log(event.code);
+//   }
+// } }
